@@ -1,6 +1,6 @@
 class TasklistsController < ApplicationController
     def show
-        @tasklist=Tasklist.find(params[:id])
+        @tasklist = Tasklist.find(params[:id])
     end
     
     def index
@@ -16,11 +16,11 @@ class TasklistsController < ApplicationController
     end
     
     def create
-        @tasklist = Tasklist.new(takslist_params)
+        @tasklist = Tasklist.new(tasklist_params)
         
         if @tasklist.save
-            flash[:success] = 'Tasklistが正常に投稿されました'
-            redirect_to @tasllist
+            flash[:success] = 'Tasklist が正常に投稿されました'
+            redirect_to @tasklist
         else
             flash.now[:danger] = 'Tasklist が投稿されませんでした'
             render :new
