@@ -28,7 +28,7 @@ class TasksController < ApplicationController
         @task = Task.find(params[:id])
     end
     
-    def updata
+    def update
         @task = Task.find(params[:id])
         
             if @task.update(task_params)
@@ -45,7 +45,7 @@ class TasksController < ApplicationController
         @task.destroy
         
         flash[:success] = 'Taskは正常に削除されました'
-        redirect_to task_url
+        redirect_to tasks_url
     end
     
     #下記のコードはメソッドアクションではなく、このクラス内でのみ使用
