@@ -1,3 +1,6 @@
 <h1>タスク新規作成ページ</h1>
-
+ <!--パーシャルをよびだす-->
+ <!--#_form.html.erbから呼び出すときは render 'form', task:@task-->
+ <!--#render 'form' することで、_form.html.erbパーシャルを埋め込んでいる-->
+ <!--#task:@taskはパーシャルに対して変数を渡している-->
 <%= render 'form', task: @task %>

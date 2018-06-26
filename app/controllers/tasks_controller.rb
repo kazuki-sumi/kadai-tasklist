@@ -1,12 +1,19 @@
 class TasksController < ApplicationController
     before_action :set_task, only: [:show, :edit, :update, :destroy]
+    before_action :require_user_logged_in
+    
     #Tasklistモデルのレコード(横列)の一覧表示
     def index
        @tasks = Task.all
+       if logged_in?
+           @user = current_user
+           @task = current_user.tasks.build
+           @tasks = current_user.tasks.order('created_at DESC').page(params[:page])
+       end
     end
     
     def create
-        @task = Task.new(task_params)
+        @task = current_user.tasks.build(task_params)
         
         if @task.save
             flash[:success] = 'Taskが正常に投稿されました'
@@ -46,6 +53,7 @@ class TasksController < ApplicationController
         flash[:success] = 'Taskは正常に削除されました'
         redirect_to tasks_url
     end
+    
     
     #下記のコードはメソッドアクションではなく、このクラス内でのみ使用
     private
